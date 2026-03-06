@@ -16,7 +16,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--store-dir", type=Path, default=DEFAULT_CONFIG.store_dir)
     parser.add_argument("--top-k", type=int, default=DEFAULT_CONFIG.top_k)
     parser.add_argument("--ollama-model", type=str, default=DEFAULT_CONFIG.ollama_model)
-    parser.add_argument("--ollama-base-url", type=str, default=DEFAULT_CONFIG.ollama_base_url)
+    parser.add_argument(
+        "--ollama-base-url", type=str, default=DEFAULT_CONFIG.ollama_base_url
+    )
     return parser.parse_args()
 
 

@@ -11,12 +11,18 @@ logger = get_logger(__name__)
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build llama-index RAG index from text/markdown files")
+    parser = argparse.ArgumentParser(
+        description="Build llama-index RAG index from text/markdown files"
+    )
     parser.add_argument("--input-dir", type=Path, default=Path("data/documents"))
     parser.add_argument("--store-dir", type=Path, default=DEFAULT_CONFIG.store_dir)
-    parser.add_argument("--embedding-model", type=str, default=DEFAULT_CONFIG.embedding_model)
+    parser.add_argument(
+        "--embedding-model", type=str, default=DEFAULT_CONFIG.embedding_model
+    )
     parser.add_argument("--chunk-size", type=int, default=DEFAULT_CONFIG.chunk_size)
-    parser.add_argument("--chunk-overlap", type=int, default=DEFAULT_CONFIG.chunk_overlap)
+    parser.add_argument(
+        "--chunk-overlap", type=int, default=DEFAULT_CONFIG.chunk_overlap
+    )
     return parser.parse_args()
 
 

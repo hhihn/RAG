@@ -8,7 +8,13 @@ from typing import Callable
 from urllib.error import URLError
 from urllib.request import urlopen
 
-from llama_index.core import Settings, SimpleDirectoryReader, StorageContext, VectorStoreIndex, load_index_from_storage
+from llama_index.core import (
+    Settings,
+    SimpleDirectoryReader,
+    StorageContext,
+    VectorStoreIndex,
+    load_index_from_storage,
+)
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.ollama import Ollama
@@ -39,7 +45,9 @@ def get_ollama_llm(model_name: str, base_url: str) -> Ollama:
     return Ollama(model=model_name, base_url=base_url, request_timeout=120.0)
 
 
-def _configure_settings(embedding_model: str, chunk_size: int, chunk_overlap: int) -> HuggingFaceEmbedding:
+def _configure_settings(
+    embedding_model: str, chunk_size: int, chunk_overlap: int
+) -> HuggingFaceEmbedding:
     embed_model = get_embed_model(embedding_model)
     Settings.embed_model = embed_model
     Settings.chunk_size = chunk_size
@@ -72,14 +80,20 @@ def build_index(
     )
     logger.info(
         "Indexbau Parameter: input_dir=%s persist_dir=%s embedding_model=%s chunk_size=%s chunk_overlap=%s",
-        in_dir, out_dir, embedding_model, chunk_size, chunk_overlap
+        in_dir,
+        out_dir,
+        embedding_model,
+        chunk_size,
+        chunk_overlap,
     )
 
     if not in_dir.exists():
         raise FileNotFoundError(f"Input-Verzeichnis nicht gefunden: {in_dir}")
 
     _emit(progress_callback, "Initialisiere Embedding-Modell...")
-    _configure_settings(embedding_model, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    _configure_settings(
+        embedding_model, chunk_size=chunk_size, chunk_overlap=chunk_overlap
+    )
     _emit(progress_callback, "Lade Dokumente...")
     documents = SimpleDirectoryReader(
         input_dir=str(in_dir),
@@ -102,19 +116,25 @@ def build_index(
         "num_documents": len(documents),
     }
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "rag_settings.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    (out_dir / "rag_settings.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     _emit(progress_callback, "Indexbau abgeschlossen.")
     logger.info("Indexbau Meta: %s", meta)
     return meta
 
 
-def load_index(persist_dir: Path, embedding_model: str, chunk_size: int, chunk_overlap: int) -> VectorStoreIndex:
+def load_index(
+    persist_dir: Path, embedding_model: str, chunk_size: int, chunk_overlap: int
+) -> VectorStoreIndex:
     store = persist_dir.expanduser()
     logger.info("Lade Index: store=%s embedding_model=%s", store, embedding_model)
     if not store.exists():
         raise FileNotFoundError(f"Index-Verzeichnis nicht gefunden: {store}")
 
-    _configure_settings(embedding_model, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    _configure_settings(
+        embedding_model, chunk_size=chunk_size, chunk_overlap=chunk_overlap
+    )
     storage_context = StorageContext.from_defaults(persist_dir=str(store))
     return load_index_from_storage(storage_context)
 
@@ -149,7 +169,9 @@ def check_ollama_connection(base_url: str, timeout_s: float = 2.0) -> None:
         with urlopen(health_url, timeout=timeout_s) as resp:
             status = getattr(resp, "status", 200)
             if status >= 400:
-                raise ConnectionError(f"Ollama antwortet mit HTTP {status} auf {health_url}")
+                raise ConnectionError(
+                    f"Ollama antwortet mit HTTP {status} auf {health_url}"
+                )
     except URLError as exc:
         logger.exception("Ollama-Verbindung fehlgeschlagen: %s", health_url)
         raise ConnectionError(
@@ -214,20 +236,24 @@ def retrieve_contexts(
                 "text": node.node.get_content(),
             }
         )
-    _emit(progress_callback, f"Retrieval abgeschlossen, {len(sources)} Kontexte gefunden.")
+    _emit(
+        progress_callback, f"Retrieval abgeschlossen, {len(sources)} Kontexte gefunden."
+    )
     return sources
 
 
 def build_teaching_prompt(question: str, sources: list[dict]) -> str:
-    return build_teaching_prompt_with_system(question=question, sources=sources, system_prompt="")
+    return build_teaching_prompt_with_system(
+        question=question, sources=sources, system_prompt=""
+    )
 
 
-def build_teaching_prompt_with_system(question: str, sources: list[dict], system_prompt: str) -> str:
+def build_teaching_prompt_with_system(
+    question: str, sources: list[dict], system_prompt: str
+) -> str:
     context_blocks: list[str] = []
     for idx, src in enumerate(sources, start=1):
-        context_blocks.append(
-            f"[Kontext {idx}] Quelle: {src['source']}\n{src['text']}"
-        )
+        context_blocks.append(f"[Kontext {idx}] Quelle: {src['source']}\n{src['text']}")
 
     joined_context = "\n\n".join(context_blocks)
     system_part = system_prompt.strip() or (
@@ -268,7 +294,9 @@ def run_rag_query(
         progress_callback,
         f"Query gestartet (store={persist_dir}, Modell={ollama_model}, top_k={top_k})",
     )
-    measure("Ollama-Verbindung prüfen", lambda: check_ollama_connection(ollama_base_url))
+    measure(
+        "Ollama-Verbindung prüfen", lambda: check_ollama_connection(ollama_base_url)
+    )
 
     sources = measure(
         "Retrieval",
@@ -294,7 +322,9 @@ def run_rag_query(
     answer = ""
     if generate_answer:
         _emit(progress_callback, "Initialisiere LLM...")
-        llm = measure("LLM initialisieren", lambda: get_ollama_llm(ollama_model, ollama_base_url))
+        llm = measure(
+            "LLM initialisieren", lambda: get_ollama_llm(ollama_model, ollama_base_url)
+        )
         _emit(progress_callback, "Generiere Antwort...")
         response = measure("Antwort generieren", lambda: llm.complete(prompt))
         answer = str(response).strip()
@@ -328,7 +358,9 @@ def run_llm_only_query(
         return result
 
     _emit(progress_callback, f"LLM-only gestartet (Modell={ollama_model})")
-    measure("Ollama-Verbindung prüfen", lambda: check_ollama_connection(ollama_base_url))
+    measure(
+        "Ollama-Verbindung prüfen", lambda: check_ollama_connection(ollama_base_url)
+    )
     prompt = measure(
         "Prompt erstellen",
         lambda: (
@@ -338,7 +370,9 @@ def run_llm_only_query(
         ),
     )
     _emit(progress_callback, "Initialisiere LLM...")
-    llm = measure("LLM initialisieren", lambda: get_ollama_llm(ollama_model, ollama_base_url))
+    llm = measure(
+        "LLM initialisieren", lambda: get_ollama_llm(ollama_model, ollama_base_url)
+    )
     _emit(progress_callback, "Generiere Antwort...")
     response = measure("Antwort generieren", lambda: llm.complete(prompt))
     _emit(progress_callback, "LLM-only abgeschlossen.")

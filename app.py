@@ -55,7 +55,12 @@ def format_sources_html(sources: list[dict]) -> str:
 
 def format_pipeline_html(timings: list[dict], mode: str) -> str:
     if mode == "LLM-Antwort ohne Retrieval":
-        expected_steps = ["Ollama-Verbindung prüfen", "Prompt erstellen", "LLM initialisieren", "Antwort generieren"]
+        expected_steps = [
+            "Ollama-Verbindung prüfen",
+            "Prompt erstellen",
+            "LLM initialisieren",
+            "Antwort generieren",
+        ]
     else:
         expected_steps = [
             "Ollama-Verbindung prüfen",
@@ -70,7 +75,9 @@ def format_pipeline_html(timings: list[dict], mode: str) -> str:
     for step in expected_steps:
         ms = timing_map.get(step)
         if ms is None:
-            lines.append(f"<li><span class='pipe-step'>{html.escape(step)}</span> <span class='pipe-miss'>–</span></li>")
+            lines.append(
+                f"<li><span class='pipe-step'>{html.escape(step)}</span> <span class='pipe-miss'>–</span></li>"
+            )
         else:
             lines.append(
                 f"<li><span class='pipe-step'>{html.escape(step)}</span> "
@@ -136,7 +143,11 @@ def build_index_ui(
             fraction = 1.0
         push(message, fraction)
 
-    logger.info("UI Aktion: Indexbau angefordert (input_dir=%s, store_dir=%s)", input_dir, store_dir)
+    logger.info(
+        "UI Aktion: Indexbau angefordert (input_dir=%s, store_dir=%s)",
+        input_dir,
+        store_dir,
+    )
     push("Indexbau gestartet", 0.05)
     try:
         meta = build_index(
@@ -277,7 +288,13 @@ def ask_ui(
     pipeline_html = format_pipeline_html(details["timings"], mode=mode)
     logger.info("UI Query erfolgreich: %s Quellen", len(sources))
     push(f"Fertig: {len(sources)} Quellen", 1.0)
-    return format_sources_html(sources), answer, "\n".join(events), prompt, pipeline_html
+    return (
+        format_sources_html(sources),
+        answer,
+        "\n".join(events),
+        prompt,
+        pipeline_html,
+    )
 
 
 def show_store_config(store_dir: str) -> str:
@@ -306,7 +323,9 @@ def create_app() -> gr.Blocks:
                             """
                         )
                     if LOGO_PATH.exists():
-                        with gr.Column(scale=2, min_width=220, elem_classes=["hero-logo-col"]):
+                        with gr.Column(
+                            scale=2, min_width=220, elem_classes=["hero-logo-col"]
+                        ):
                             gr.Image(
                                 value=str(LOGO_PATH),
                                 show_label=False,
@@ -319,7 +338,10 @@ def create_app() -> gr.Blocks:
                 with gr.Tabs():
                     with gr.Tab("Index bauen"):
                         with gr.Column(elem_classes=["input-card"]):
-                            gr.Markdown("### Index Einstellungen", elem_classes=["section-title"])
+                            gr.Markdown(
+                                "### Index Einstellungen",
+                                elem_classes=["section-title"],
+                            )
 
                             input_dir = gr.Textbox(
                                 value="data/documents",
@@ -350,7 +372,9 @@ def create_app() -> gr.Blocks:
                             )
 
                             ingest_btn = gr.Button("Index erstellen", variant="primary")
-                            ingest_status = gr.Textbox(label="Status", lines=5, elem_classes=["status-box"])
+                            ingest_status = gr.Textbox(
+                                label="Status", lines=5, elem_classes=["status-box"]
+                            )
                             ingest_live_log = gr.Textbox(
                                 label="Live-Log",
                                 lines=8,
@@ -366,7 +390,13 @@ def create_app() -> gr.Blocks:
 
                             ingest_btn.click(
                                 fn=build_index_ui,
-                                inputs=[input_dir, store_dir_ingest, embedding_model_ingest, chunk_size, chunk_overlap],
+                                inputs=[
+                                    input_dir,
+                                    store_dir_ingest,
+                                    embedding_model_ingest,
+                                    chunk_size,
+                                    chunk_overlap,
+                                ],
                                 outputs=[ingest_status, ingest_live_log, chunk_preview],
                             )
                             preview_btn.click(
@@ -377,7 +407,10 @@ def create_app() -> gr.Blocks:
 
                     with gr.Tab("Fragen"):
                         with gr.Column(elem_classes=["input-card"]):
-                            gr.Markdown("### Query Einstellungen", elem_classes=["section-title"])
+                            gr.Markdown(
+                                "### Query Einstellungen",
+                                elem_classes=["section-title"],
+                            )
 
                             question = gr.Textbox(
                                 label="Frage",
@@ -406,7 +439,8 @@ def create_app() -> gr.Blocks:
                             ollama_model_preset = gr.Dropdown(
                                 choices=["llama3", "llama3:8b-instruct-q4_K_M"],
                                 value=DEFAULT_CONFIG.ollama_model
-                                if DEFAULT_CONFIG.ollama_model in {"llama3", "llama3:8b-instruct-q4_K_M"}
+                                if DEFAULT_CONFIG.ollama_model
+                                in {"llama3", "llama3:8b-instruct-q4_K_M"}
                                 else "llama3",
                                 label="Modell-Voreinstellung",
                                 info="Schnell zwischen Standard und quantisierter Variante wechseln.",
@@ -423,7 +457,11 @@ def create_app() -> gr.Blocks:
                                 info="Bearbeitbarer System-Kontext. Wird bei der Anfrage an das Modell gesendet.",
                             )
                             mode = gr.Radio(
-                                choices=["Retrieval-only", "Retrieval + RAG-Antwort", "LLM-Antwort ohne Retrieval"],
+                                choices=[
+                                    "Retrieval-only",
+                                    "Retrieval + RAG-Antwort",
+                                    "LLM-Antwort ohne Retrieval",
+                                ],
                                 value="Retrieval + RAG-Antwort",
                                 label="Modus",
                                 info="Vergleiche reines Retrieval, RAG und reine LLM-Antwort ohne Retrieval.",
@@ -435,9 +473,18 @@ def create_app() -> gr.Blocks:
                                 value="<div class='context-empty'>Noch keine Query ausgeführt.</div>",
                                 elem_classes=["context-output"],
                             )
-                            retrieved = gr.HTML(label="Gefundene Kontexte", elem_classes=["context-output"])
-                            answer = gr.Textbox(label="RAG-Antwort", lines=8, elem_classes=["answer-box"])
-                            with gr.Accordion("Gesendeter Prompt an das LLM", open=False):
+                            retrieved = gr.HTML(
+                                label="Gefundene Kontexte",
+                                elem_classes=["context-output"],
+                            )
+                            answer = gr.Textbox(
+                                label="RAG-Antwort",
+                                lines=8,
+                                elem_classes=["answer-box"],
+                            )
+                            with gr.Accordion(
+                                "Gesendeter Prompt an das LLM", open=False
+                            ):
                                 prompt_box = gr.Code(
                                     label="Prompt an das LLM",
                                     language="markdown",
@@ -462,7 +509,13 @@ def create_app() -> gr.Blocks:
                                     system_prompt,
                                     mode,
                                 ],
-                                outputs=[retrieved, answer, query_live_log, prompt_box, pipeline_view],
+                                outputs=[
+                                    retrieved,
+                                    answer,
+                                    query_live_log,
+                                    prompt_box,
+                                    pipeline_view,
+                                ],
                             )
                             ollama_model_preset.change(
                                 fn=lambda v: v,
@@ -470,10 +523,22 @@ def create_app() -> gr.Blocks:
                                 outputs=[ollama_model],
                             )
 
-                            gr.Markdown("Kurzhilfe: Erst `Index bauen`, dann im selben Store fragen.", elem_classes=["settings-note"])
-                            store_cfg = gr.Code(label="Store Config", language="json", interactive=False, elem_classes=["code-box"])
+                            gr.Markdown(
+                                "Kurzhilfe: Erst `Index bauen`, dann im selben Store fragen.",
+                                elem_classes=["settings-note"],
+                            )
+                            store_cfg = gr.Code(
+                                label="Store Config",
+                                language="json",
+                                interactive=False,
+                                elem_classes=["code-box"],
+                            )
                             refresh_cfg_btn = gr.Button("Store-Config anzeigen")
-                            refresh_cfg_btn.click(fn=show_store_config, inputs=[store_dir_query], outputs=[store_cfg])
+                            refresh_cfg_btn.click(
+                                fn=show_store_config,
+                                inputs=[store_dir_query],
+                                outputs=[store_cfg],
+                            )
 
     return demo
 
