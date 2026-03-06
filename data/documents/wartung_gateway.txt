@@ -1,0 +1,24 @@
+Wartungsanleitung – HavelSense SensorGateway
+
+Zur Sicherstellung eines stabilen Betriebs sollte das Gateway regelmäßig überprüft werden.
+
+Empfohlene Wartungsintervalle
+
+Alle 6 Monate:
+
+- Firmware Update prüfen
+- Netzwerkverbindung testen
+- angeschlossene Sensoren kontrollieren
+
+Firmware Update
+
+Firmware Updates können über das Webinterface installiert werden.
+
+Schritte:
+
+1. Login in das Gateway Webinterface
+2. Menüpunkt "System"
+3. "Firmware Update" auswählen
+4. Update-Datei hochladen
+
+Nach dem Update startet das Gateway automatisch neu.

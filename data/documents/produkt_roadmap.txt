@@ -1,0 +1,12 @@
+Produktroadmap – HavelTech Solutions GmbH
+
+2025
+
+- Veröffentlichung von HavelPredict 2.0
+- Erweiterung der Cloudplattform um Energieanalysen
+- Integration von KI-basierten Anomalieerkennungen
+
+2026
+
+- Einführung eines neuen Edge-Computing Gateways
+- Erweiterung der Plattform um digitale Zwillinge für Maschinen

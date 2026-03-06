@@ -1,0 +1,31 @@
+Unternehmensprofil – HavelTech Solutions GmbH
+
+Die HavelTech Solutions GmbH ist ein mittelständisches Technologieunternehmen mit Sitz in Wildau (Brandenburg). Das Unternehmen entwickelt und betreibt Industrie-IoT-Lösungen für kleine und mittelständische Produktionsbetriebe.
+
+Gründung:
+2016
+
+Standort:
+Technologie- und Gründerzentrum Wildau
+
+Mitarbeitende:
+ca. 45
+
+Geschäftsbereiche:
+- Industrie-IoT Sensorik
+- Datenplattform für Produktionsanalyse
+- Predictive Maintenance
+- Integration bestehender Maschinen in digitale Systeme
+
+Typische Kunden:
+- Metallverarbeitung
+- Kunststoffproduktion
+- Lebensmittelverarbeitung
+- Maschinenbau
+
+Die Lösungen von HavelTech werden vor allem von Produktionsbetrieben eingesetzt, die ihre Maschinen digital überwachen und Ausfälle reduzieren möchten.
+
+Die wichtigsten Produkte des Unternehmens sind:
+- HavelSense SensorGateway
+- HavelCloud Monitoring Plattform
+- HavelPredict Wartungsanalyse

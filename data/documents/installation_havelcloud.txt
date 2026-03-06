@@ -1,0 +1,28 @@
+Installationsanleitung – HavelCloud Monitoring Plattform
+
+Die HavelCloud Plattform wird über einen Webbrowser genutzt.
+
+Systemanforderungen
+
+Unterstützte Browser:
+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+
+Login
+
+Der Zugang erfolgt über die folgende Adresse:
+
+https://cloud.haveltech.de
+
+Nach dem Login sehen Nutzer ein Dashboard mit folgenden Bereichen:
+
+- Maschinenübersicht
+- Alarmmeldungen
+- Produktionsstatistik
+- Wartungsplanung
+
+Dashboard Konfiguration
+
+Nutzer können Widgets hinzufügen, um Maschinenparameter wie Temperatur, Vibration oder Energieverbrauch zu visualisieren.

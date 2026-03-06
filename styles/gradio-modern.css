@@ -1,0 +1,250 @@
+:root {
+  --wine: #93032E;
+  --sand: #C69F89;
+  --olive-light: #A6A15E;
+  --olive-dark: #84894A;
+  --forest: #034C3C;
+  --surface: #f8f5f2;
+  --surface-2: #fffdfb;
+  --text-main: #1f1a17;
+  --text-soft: #5e564f;
+  --border-soft: #e4d8cf;
+}
+
+.gradio-container {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 10% -10%, rgba(198, 159, 137, 0.35), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(3, 76, 60, 0.16), transparent 35%),
+    linear-gradient(145deg, #f6f1ec 0%, #fbf8f5 45%, #f3eee8 100%);
+}
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 18px;
+  padding-bottom: 24px;
+}
+
+.hero {
+  background: linear-gradient(140deg, var(--forest) 0%, #0d6d58 55%, var(--olive-dark) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(3, 76, 60, 0.22);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.hero h1,
+.hero p,
+.hero li,
+.hero strong {
+  color: #f8f7f5;
+}
+
+.hero p {
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+.hero-row {
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-logo-col {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-logo {
+  max-width: 240px;
+  width: 100%;
+}
+
+.hero-logo img {
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+}
+
+.panel {
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(147, 3, 46, 0.08);
+  padding: 10px;
+}
+
+.gr-tab-nav {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  padding: 6px;
+}
+
+.gr-tab-nav button {
+  border-radius: 10px !important;
+  color: var(--forest) !important;
+  font-weight: 600 !important;
+}
+
+.gr-tab-nav button.selected {
+  background: linear-gradient(135deg, var(--wine), #b32752) !important;
+  color: #fff !important;
+}
+
+.input-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.section-title h3 {
+  margin: 2px 0 8px 0;
+  color: var(--forest);
+}
+
+button.primary {
+  background: linear-gradient(135deg, var(--wine), #b21f4d) !important;
+  border: 1px solid #7a0528 !important;
+  border-radius: 12px !important;
+}
+
+button.primary:hover {
+  filter: brightness(1.05);
+}
+
+.status-box textarea,
+.result-box textarea,
+.answer-box textarea {
+  background: #fff;
+  border-radius: 12px !important;
+}
+
+.settings-note {
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  margin-top: 2px;
+}
+
+.code-box {
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.context-output {
+  margin-top: 8px;
+}
+
+.context-list {
+  display: grid;
+  gap: 10px;
+}
+
+.context-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.context-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  background: linear-gradient(140deg, rgba(198, 159, 137, 0.18), rgba(3, 76, 60, 0.08));
+}
+
+.context-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.context-title {
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.context-meta {
+  font-size: 0.92rem;
+  color: var(--wine);
+}
+
+.context-doc {
+  font-size: 0.86rem;
+  color: var(--text-soft);
+  word-break: break-word;
+}
+
+.context-content {
+  padding: 10px 12px 12px;
+}
+
+.context-content pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: #2b2825;
+}
+
+.context-empty {
+  background: #fff;
+  border: 1px dashed var(--border-soft);
+  border-radius: 10px;
+  padding: 12px;
+  color: var(--text-soft);
+}
+
+.retrieval-only,
+.pipeline-box,
+.chunk-preview {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.retrieval-only h4,
+.pipeline-box h4,
+.chunk-preview h4 {
+  margin: 2px 0 10px;
+  color: var(--forest);
+}
+
+.retrieval-only ol,
+.pipeline-box ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.retrieval-only li,
+.pipeline-box li {
+  margin-bottom: 6px;
+}
+
+.pipe-step {
+  color: #25312d;
+}
+
+.pipe-time {
+  margin-left: 8px;
+  font-size: 0.86rem;
+  color: var(--wine);
+}
+
+.pipe-miss {
+  margin-left: 8px;
+  color: var(--text-soft);
+}

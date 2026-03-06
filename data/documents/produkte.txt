@@ -1,0 +1,31 @@
+Produktübersicht – HavelTech Solutions GmbH
+
+HavelSense SensorGateway
+
+Das HavelSense SensorGateway ist ein IoT-Gerät zur Anbindung von Maschinen und Sensoren in Produktionsanlagen. Es sammelt Daten von verschiedenen Sensoren und überträgt diese an die HavelCloud Plattform.
+
+Wichtige Funktionen:
+- Verbindung zu Temperatursensoren
+- Vibrationsanalyse
+- Stromverbrauchsmessung
+- OPC-UA und Modbus Schnittstellen
+
+Die Daten werden lokal vorverarbeitet und anschließend verschlüsselt an die Cloud übertragen.
+
+---
+
+HavelCloud Monitoring Plattform
+
+Die HavelCloud Plattform dient zur Visualisierung und Analyse von Produktionsdaten. Kunden können damit den Zustand ihrer Maschinen in Echtzeit überwachen.
+
+Funktionen:
+- Dashboards für Maschinenstatus
+- Alarmmeldungen bei Grenzwertüberschreitungen
+- Historische Datenanalyse
+- Export von Produktionsdaten
+
+---
+
+HavelPredict Wartungsanalyse
+
+HavelPredict nutzt Machine-Learning-Verfahren, um mögliche Maschinenausfälle frühzeitig zu erkennen. Die Analyse basiert auf Sensordaten und historischen Wartungsdaten.

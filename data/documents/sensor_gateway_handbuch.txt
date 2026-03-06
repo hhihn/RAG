@@ -1,0 +1,31 @@
+Technisches Handbuch – HavelSense SensorGateway
+
+Das HavelSense SensorGateway wird zur Anbindung von Maschinen und Sensoren an die HavelCloud Plattform eingesetzt.
+
+Installation
+
+1. Das Gateway muss über ein Netzwerkkabel mit dem Firmennetzwerk verbunden werden.
+2. Die Stromversorgung erfolgt über ein 24V-Netzteil.
+3. Nach dem Einschalten startet das Gerät automatisch.
+
+Konfiguration
+
+Die Konfiguration erfolgt über das Webinterface des Gateways.
+
+Standardadresse:
+http://192.168.10.50
+
+Standardlogin:
+Benutzername: admin
+Passwort: haveltech
+
+Nach dem ersten Login sollte das Passwort geändert werden.
+
+Sensoranbindung
+
+Sensoren können über folgende Schnittstellen verbunden werden:
+- Modbus TCP
+- OPC-UA
+- analoge 4–20 mA Eingänge
+
+Die Sensorwerte werden alle 10 Sekunden an die HavelCloud übertragen.

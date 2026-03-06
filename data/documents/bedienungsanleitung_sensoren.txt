@@ -1,0 +1,24 @@
+Bedienungsanleitung – Vibrationssensor VS-200
+
+Der Vibrationssensor VS-200 dient zur Überwachung von Maschinenlagern und rotierenden Komponenten.
+
+Montage
+
+Der Sensor sollte möglichst nahe am Lagergehäuse montiert werden.
+
+Befestigung:
+
+- Schraubmontage mit M6 Gewinde
+- alternativ Magnetadapter
+
+Messbereich
+
+0 – 50 mm/s Schwinggeschwindigkeit
+
+Datenübertragung
+
+Der Sensor überträgt Daten über ein industrielles Ethernet-Protokoll an das HavelSense Gateway.
+
+Wartung
+
+Der Sensor ist wartungsfrei. Eine Sichtprüfung wird alle 12 Monate empfohlen.

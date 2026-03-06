@@ -1,0 +1,24 @@
+IT-Sicherheitsrichtlinie – HavelTech Solutions GmbH
+
+Ziel dieser Richtlinie ist der Schutz von Unternehmensdaten und Kundendaten.
+
+Passwortrichtlinien
+
+Passwörter müssen mindestens enthalten:
+
+- 12 Zeichen
+- Groß- und Kleinbuchstaben
+- Zahlen
+- Sonderzeichen
+
+Passwörter müssen alle 180 Tage geändert werden.
+
+Cloud-Zugriff
+
+Der Zugriff auf die HavelCloud Plattform erfolgt ausschließlich über Zwei-Faktor-Authentifizierung.
+
+Datensicherung
+
+Alle Produktionsdaten werden täglich gesichert.
+
+Backups werden für 30 Tage gespeichert.

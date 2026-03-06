@@ -1,0 +1,29 @@
+Supportprozess – HavelTech Solutions GmbH
+
+Der technische Support für Kunden wird über ein zentrales Ticketsystem organisiert.
+
+Supportzeiten
+
+Montag – Freitag
+08:00 – 17:00 Uhr
+
+Kontaktmöglichkeiten
+
+E-Mail:
+support@haveltech.de
+
+Telefon:
+03375 123456
+
+Prioritätsstufen
+
+Priorität 1 – Produktionsausfall
+Reaktionszeit: 1 Stunde
+
+Priorität 2 – eingeschränkte Funktion
+Reaktionszeit: 4 Stunden
+
+Priorität 3 – allgemeine Anfrage
+Reaktionszeit: 1 Arbeitstag
+
+Supportfälle werden im System "ServiceDesk Pro" dokumentiert.
