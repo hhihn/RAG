@@ -1,7 +1,7 @@
-# Einfaches lokales RAG mit Ollama (macOS)
+# Einfaches lokales RAG mit Ollama
 
 Dieses Projekt nutzt `llama-index` + `Ollama` für lokales RAG.
-Embeddings laufen über HuggingFace (`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` standardmäßig, gut für Deutsch), Antworten über ein lokales Ollama-Modell (`llama3` standardmäßig).
+Embeddings laufen über HuggingFace (`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` standardmäßig, gut für deutsche Texte), Antworten über ein lokales Ollama-Modell (`llama3` standardmäßig).
 
 ## Voraussetzungen
 - Python 3.10+
@@ -21,7 +21,7 @@ ollama serve
 ollama pull llama3
 ollama list
 ```
-
+Bei bedarf auch das quantisierte Modell llama3:8b-instruct-q4_K_M pullen.
 ## Dokumente ablegen
 Lege `.txt` und `.md` Dateien in `data/documents/`.
 

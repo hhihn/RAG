@@ -334,7 +334,7 @@ def create_app() -> gr.Blocks:
                             embedding_model_ingest = gr.Textbox(
                                 value=DEFAULT_CONFIG.embedding_model,
                                 label="Embedding-Modell",
-                                info="Empfohlen für Deutsch: sentence-transformers/paraphrase-multilingual-mpnet-base-v2.",
+                                info="Empfohlen für deutsche Texte: sentence-transformers/paraphrase-multilingual-mpnet-base-v2.",
                             )
                             chunk_size = gr.Number(
                                 value=DEFAULT_CONFIG.chunk_size,
