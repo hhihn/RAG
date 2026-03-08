@@ -431,19 +431,18 @@ def create_app() -> gr.Blocks:
                                 maximum=20,
                                 info="Anzahl gefundener Kontexte für die Antwort. 3-6 ist ein guter Bereich.",
                             )
-                            ollama_model = gr.Textbox(
-                                value=DEFAULT_CONFIG.ollama_model,
-                                label="Ollama Modell",
-                                info="Lokales LLM in Ollama, z. B. llama3, mistral oder gemma.",
-                            )
                             ollama_model_preset = gr.Dropdown(
-                                choices=["llama3", "llama3:8b-instruct-q4_K_M"],
+                                choices=[
+                                    ("llama3:8-q4_0 (mittel quantisiert)", "llama3"),
+                                    ("llama3:8b-instruct-q4_K_M (wenig quantisiert)", "llama3:8b-instruct-q4_K_M"),
+                                    ("llama3:8b-instruct-q2_K (stark quantisiert)", "llama3:8b-instruct-q2_K"),
+                                ],
                                 value=DEFAULT_CONFIG.ollama_model
                                 if DEFAULT_CONFIG.ollama_model
-                                in {"llama3", "llama3:8b-instruct-q4_K_M"}
+                                in {"llama3", "llama3:8b-instruct-q4_K_M", "llama3:8b-instruct-q2_K"}
                                 else "llama3",
-                                label="Modell-Voreinstellung",
-                                info="Schnell zwischen Standard und quantisierter Variante wechseln.",
+                                label="Ollama Modell",
+                                info="Wähle das Modell für die Generierung.",
                             )
                             ollama_base_url = gr.Textbox(
                                 value=DEFAULT_CONFIG.ollama_base_url,
@@ -504,7 +503,7 @@ def create_app() -> gr.Blocks:
                                     question,
                                     store_dir_query,
                                     top_k,
-                                    ollama_model,
+                                    ollama_model_preset,
                                     ollama_base_url,
                                     system_prompt,
                                     mode,
@@ -517,12 +516,6 @@ def create_app() -> gr.Blocks:
                                     pipeline_view,
                                 ],
                             )
-                            ollama_model_preset.change(
-                                fn=lambda v: v,
-                                inputs=[ollama_model_preset],
-                                outputs=[ollama_model],
-                            )
-
                             gr.Markdown(
                                 "Kurzhilfe: Erst `Index bauen`, dann im selben Store fragen.",
                                 elem_classes=["settings-note"],
